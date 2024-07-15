@@ -6,7 +6,7 @@ interface AppButtonProps {
 
 const AppButton: React.FC<AppButtonProps> = ({ text }) => {
   return (
-    <button className="w-48 h-12bg-stone-800 ">
+    <button className="w-44 border-black border-2 p-4 rounded-full">
         {text}
     </button>
   );

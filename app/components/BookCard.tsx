@@ -8,16 +8,19 @@ interface BookCardProps {
 
 const BookCard: React.FC<BookCardProps> = ({ book }) => {
   return (
-    <div className="flex flex-col w-48 items-center group">
-      <div className="shadow-lg">
+    <div className="flex flex-col w-48 h-96 py-4 items-center group">
+      <div className="relative shadow-lg w-full h-72">
         <img
-          className="w-full h-72 object-contain group-hover:opacity-50 transition-opacity duration-300 ease-in-out"
+          className="w-full h-full object-contain group-hover:opacity-50 transition-opacity duration-300 ease-in-out"
           src={book.coverImage}
-          alt="book"
+          alt={book.title}
         />
+        <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+          <AppButton text="Apartar" />
+        </div>
       </div>
-      <div className="flex flex-col py-2 w-full">
-        <p className="font-bold text-wrap text-base">{book.title}</p>
+      <div className="flex flex-col py-2 w-full flex-1">
+        <p className="font-bold text-base overflow-hidden text-ellipsis h-12">{book.title}</p>
         <p className="text-xs font-bold text-zinc-500">{book.author}</p>
       </div>
     </div>
