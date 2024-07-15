@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
+import AppAside from "./components/Aside";
+import { asideLinks } from "./constants/constants";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} bg-gray-100`}>
+        <div className="min-h-screen flex flex-col">
+          <Header title="LibrosTeca" />
+          <div className="flex flex-1">
+            <AppAside options={asideLinks} />
+            <main className="flex-1 p-4">{children}</main>
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
