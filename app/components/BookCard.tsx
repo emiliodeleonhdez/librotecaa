@@ -13,7 +13,7 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
       </div>
       <div className="flex flex-col py-2 w-full">
         <p className="font-bold text-wrap text-base">{book.title}</p>
-        <p className="text-xs">{book.author}</p>
+        <p className="text-xs font-bold text-zinc-500">{book.author}</p>
       </div>
     </div>
   );

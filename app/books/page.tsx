@@ -1,13 +1,24 @@
 import BookCard from "../components/BookCard";
-import { exampleBook } from "../constants/constants";
+import { appBooks, exampleBook } from "../constants/constants";
+import { Book } from "../interfaces/interfaces";
 
-const LibrosPage: React.FC = () => {
+interface BooksPageProps {
+  books: Book[];
+}
+
+const BooksPage: React.FC<BooksPageProps> = ({ books }) => {
   return (
-    <div>
+    <>
       <h1>Libros</h1>
-      <BookCard book={exampleBook}/>
-    </div>
+      <div className="flex flex-wrap">
+        {appBooks.map((book) => (
+          <article>
+            <BookCard book={book} />
+          </article>
+        ))}
+      </div>
+    </>
   );
 };
 
-export default LibrosPage;
+export default BooksPage;
