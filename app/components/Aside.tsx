@@ -1,8 +1,5 @@
 import React from "react";
-
-interface AppAsideItem {
-  text: string;
-}
+import { AppAsideItem } from "../interfaces/interfaces";
 
 interface AppAsideProps {
   options: AppAsideItem[];
@@ -15,7 +12,7 @@ const AppAside: React.FC<AppAsideProps> = ({ options }) => {
         <ul>
           {options.map((item) => (
             <li className="mb-2">
-              <a href="#" className="text-blue-700">
+              <a href={item.href} className="text-blue-700">
                 {item.text}
               </a>
             </li>
