@@ -1,7 +1,9 @@
-import AppButton from "../components/AppButton";
+"use client";
+import React, { useState } from "react";
 import BookCard from "../components/BookCard";
+import BookModal from "../components/Modal";
 import SearchComponent from "../components/SearchBox";
-import { appBooks, exampleBook } from "../constants/constants";
+import { appBooks } from "../constants/constants";
 import { Book } from "../interfaces/interfaces";
 
 interface BooksPageProps {
@@ -9,15 +11,39 @@ interface BooksPageProps {
 }
 
 const BooksPage: React.FC<BooksPageProps> = ({ books }) => {
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+
+  const openModal = (book: Book) => {
+    setSelectedBook(book);
+  };
+
+  const closeModal = () => {
+    setSelectedBook(null);
+  };
+
   return (
     <>
       <h1>Libros</h1>
-      <SearchComponent/>
+      <SearchComponent />
       <div className="flex flex-wrap gap-3 md:gap-8 items-center justify-center md:justify-normal">
         {appBooks.map((book) => (
-          <BookCard book={book} />
+          <BookCard
+            key={book.id}
+            book={book}
+            onOpenModal={() => openModal(book)}
+          />
         ))}
       </div>
+      {selectedBook && (
+        <BookModal
+          coverImage={selectedBook.coverImage}
+          title={selectedBook.title}
+          author={`Autor: ${selectedBook.author}`}
+          synopsis={selectedBook.synopsis}
+          isOpen={!!selectedBook}
+          onCloseModal={closeModal}
+        />
+      )}
     </>
   );
 };

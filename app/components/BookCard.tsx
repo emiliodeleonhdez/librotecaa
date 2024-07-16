@@ -4,9 +4,10 @@ import AppButton from "./AppButton";
 
 interface BookCardProps {
   book: Book;
+  onOpenModal: () => void;
 }
 
-const BookCard: React.FC<BookCardProps> = ({ book }) => {
+const BookCard: React.FC<BookCardProps> = ({ book, onOpenModal }) => {
   return (
     <div className="flex flex-col w-48 h-96 py-4 items-center group">
       <div className="relative shadow-lg w-full h-72">
@@ -16,7 +17,7 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
           alt={book.title}
         />
         <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-          <AppButton text="Apartar" />
+          <AppButton text="Apartar" onClick={onOpenModal} />
         </div>
       </div>
       <div className="flex flex-col py-2 w-full flex-1">
