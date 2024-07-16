@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppButton from "./AppButton";
 import LoaderToSuccess from "./Loader";
-import "./loader.css";
+import { addBookToStorage } from "../utils/book";
 
 interface BookModalProps {
   coverImage: string;
@@ -31,11 +31,12 @@ const BookModal: React.FC<BookModalProps> = ({
     }
   }, [isConfirmed]);
 
-  const handleConfirmBooking = () => {
+  const handleConfirmBooking = (title: string) => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
       setIsConfirmed(true);
+      addBookToStorage({ book: title });
     }, 2000);
   };
 
@@ -71,7 +72,7 @@ const BookModal: React.FC<BookModalProps> = ({
                 {!isLoading && !isConfirmed ? (
                   <AppButton
                     styles="w-60 hover:border-green-500 hover:text-emerald-900 border-black border-2 p-4 rounded-full"
-                    onClick={handleConfirmBooking}
+                    onClick={() => handleConfirmBooking(title)}
                     text="Confirmar Apartado"
                   />
                 ) : (

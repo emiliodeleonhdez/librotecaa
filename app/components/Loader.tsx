@@ -1,4 +1,5 @@
 import React from "react";
+import "./loader.css";
 
 interface LoaderToSuccessProps {
   isLoading: boolean;
