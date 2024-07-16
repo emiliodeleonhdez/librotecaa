@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { getRentalsFromStorage } from "../utils/book";
+import RentedBookCard from "../components/RentedBookCard";
 
 interface RentalsPageProps {
   title: string;
@@ -16,15 +17,15 @@ const RentalsPage: React.FC<RentalsPageProps> = ({ title }) => {
   }, []);
 
   return (
-    <>
+    <section className="flex flex-wrap gap-3 md:gap-8 items-center justify-center">
       {rentals.length > 0 ? (
         rentals.map((item, index) => (
-          <div key={index}>{item.book}</div>
+          <RentedBookCard key={index} book={item}/>
         ))
       ) : (
-        <div>No hay libros apartados</div>
+        <div>Loading...</div>
       )}
-    </>
+    </section>
   );
 };
 

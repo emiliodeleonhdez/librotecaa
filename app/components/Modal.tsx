@@ -31,12 +31,12 @@ const BookModal: React.FC<BookModalProps> = ({
     }
   }, [isConfirmed]);
 
-  const handleConfirmBooking = (title: string) => {
+  const handleConfirmBooking = (data: any) => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
       setIsConfirmed(true);
-      addBookToStorage({ book: title });
+      addBookToStorage({ title: data.title, coverImage: data.coverImage, author: data.author });
     }, 2000);
   };
 
@@ -72,7 +72,7 @@ const BookModal: React.FC<BookModalProps> = ({
                 {!isLoading && !isConfirmed ? (
                   <AppButton
                     styles="w-60 hover:border-green-500 hover:text-emerald-900 border-black border-2 p-4 rounded-full"
-                    onClick={() => handleConfirmBooking(title)}
+                    onClick={() => handleConfirmBooking({title, coverImage, author})}
                     text="Confirmar Apartado"
                   />
                 ) : (
