@@ -4,7 +4,6 @@ export const asideLinks = [
   { text: "Inicio", href: "/" },
   { text: "Libros", href: "/books" },
   { text: "Mis Alquileres", href: "/rentals" },
-  { text: "Buscar", href: "/search" },
   { text: "Contacto", href: "/contact" },
 ];
 

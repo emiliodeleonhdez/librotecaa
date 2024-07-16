@@ -25,7 +25,7 @@ const BooksPage: React.FC<BooksPageProps> = ({ books }) => {
     <>
       <h1>Libros</h1>
       <SearchComponent />
-      <div className="flex flex-wrap gap-3 md:gap-8 items-center justify-center md:justify-normal">
+      <div className="flex flex-wrap gap-3 md:gap-8 items-center justify-center">
         {appBooks.map((book) => (
           <BookCard
             key={book.id}
