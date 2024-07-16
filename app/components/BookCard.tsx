@@ -17,7 +17,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, onOpenModal }) => {
           alt={book.title}
         />
         <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-          <AppButton text="Apartar" onClick={onOpenModal} />
+          <AppButton text="Apartar" onClick={onOpenModal} styles="w-44 border-black border-2 p-4 rounded-full" />
         </div>
       </div>
       <div className="flex flex-col py-2 w-full flex-1">

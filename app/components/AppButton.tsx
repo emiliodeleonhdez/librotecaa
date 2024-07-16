@@ -3,11 +3,12 @@ import React from "react";
 interface AppButtonProps {
   text: string;
   onClick: () => void;
+  styles:string;
 }
 
-const AppButton: React.FC<AppButtonProps> = ({ text, onClick }) => {
+const AppButton: React.FC<AppButtonProps> = ({ text, onClick,styles }) => {
   return (
-    <button onClick={onClick} className="w-44 border-black border-2 p-4 rounded-full">
+    <button onClick={onClick} className={styles}>
       {text}
     </button>
   );
