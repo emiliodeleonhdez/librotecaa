@@ -46,7 +46,7 @@ export const appBooks: Book[] = [
   },
   {
     id: 3,
-    title: "Muchos maestros, muchas vidas",
+    title: "Muchos vidas, muchos maestros",
     author: "Brian Weiss",
     publicationYear: 1988,
     isbn10: "1234567893",
