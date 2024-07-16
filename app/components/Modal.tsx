@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AppButton from "./AppButton";
+import LoaderToSuccess from "./Loader";
+import "./loader.css";
 
 interface BookModalProps {
   coverImage: string;
   title: string;
   author: string;
-  synopsis: string; 
+  synopsis: string;
   isOpen: boolean;
   onCloseModal: () => void;
 }
@@ -18,20 +20,44 @@ const BookModal: React.FC<BookModalProps> = ({
   isOpen,
   onCloseModal,
 }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isConfirmed) {
+      setTimeout(() => {
+        onCloseModal();
+      }, 1000);
+    }
+  }, [isConfirmed]);
+
+  const handleConfirmBooking = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsConfirmed(true);
+    }, 2000);
+  };
+
   return (
     <div>
       {isOpen && (
         <div
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
           onClick={onCloseModal}
-        >     
+        >
           <section className="flex flex-col justify-center items-center">
             <div
               className="bg-white p-4 rounded-lg shadow-lg flex flex-col w-64 md:w-1/2 lg:w-[600px]"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col md:flex-row items-center">
-              <p className="font-bold text-xl hover:text-sky-800 cursor-pointer" onClick={onCloseModal}>x</p>
+                <p
+                  className="font-bold text-xl hover:text-sky-800 cursor-pointer"
+                  onClick={onCloseModal}
+                >
+                  x
+                </p>
                 <div className="w-20 m-2">
                   <img className="object-contain" src={coverImage} alt="book" />
                 </div>
@@ -42,7 +68,15 @@ const BookModal: React.FC<BookModalProps> = ({
                 </div>
               </div>
               <div className="flex justify-center mt-4">
-                <AppButton styles="w-60 hover:border-green-500 hover:text-emerald-900	 border-black border-2 p-4 rounded-full" onClick={()=> console.log("confirmar")} text={"Confirmar Apartado"}/>
+                {!isLoading && !isConfirmed ? (
+                  <AppButton
+                    styles="w-60 hover:border-green-500 hover:text-emerald-900 border-black border-2 p-4 rounded-full"
+                    onClick={handleConfirmBooking}
+                    text="Confirmar Apartado"
+                  />
+                ) : (
+                  <LoaderToSuccess isLoading={isLoading} />
+                )}
               </div>
             </div>
           </section>
