@@ -6,11 +6,7 @@ import SearchComponent from "../components/SearchBox";
 import { appBooks } from "../constants/constants";
 import { Book } from "../interfaces/interfaces";
 
-interface BooksPageProps {
-  books: Book[];
-}
-
-const BooksPage: React.FC<BooksPageProps> = ({ books }) => {
+const BooksPage: React.FC = () => {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
   const openModal = (book: Book) => {

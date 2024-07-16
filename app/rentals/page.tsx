@@ -3,11 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getRentalsFromStorage } from "../utils/book";
 import RentedBookCard from "../components/RentedBookCard";
 
-interface RentalsPageProps {
-  title: string;
-}
-
-const RentalsPage: React.FC<RentalsPageProps> = ({ title }) => {
+const RentalsPage: React.FC = () => {
   const [rentals, setRentals] = useState<any[]>([]);
 
   useEffect(() => {
@@ -19,9 +15,7 @@ const RentalsPage: React.FC<RentalsPageProps> = ({ title }) => {
   return (
     <section className="flex flex-wrap gap-3 md:gap-8 items-center justify-center">
       {rentals.length > 0 ? (
-        rentals.map((item, index) => (
-          <RentedBookCard key={index} book={item}/>
-        ))
+        rentals.map((item, index) => <RentedBookCard key={index} book={item} />)
       ) : (
         <div>Loading...</div>
       )}
